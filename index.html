@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="https://kit.fontawesome.com/cd31889dca.js" crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <!-- 사용자 이름 입력 화면 -->
+      <section id="start_screen">
+        <h1>노션에 사용할 이름을 입력해 주세요.</h1>
+        <input type="text" class="name_input" placeholder="이름을 입력해주세요" />
+        <button id="submit_btn">등록</button>
+      </section>
+
+      <!-- 메인 화면 -->
+      <section id="main_screen">
+        <!-- 사이드바 -->
+        <section id="sidebar" class="open">
+          <div class="sidebar_header">
+            <div id="name_title">00이의 노션</div>
+            <button id="sidebar_toggle">사이드바접기</button>
+          </div>
+
+          <!-- 고정 페이지 영역 -->
+          <div id="pinned_pages">
+            <h2>고정 페이지</h2>
+            <ul>
+              <!-- 예시 -->
+              <li>
+                <a href="#">자식 페이지 1-2</a>
+                <div class="btns">
+                  <button class="pin_btn pinned">📌해제</button>
+                  <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 개인 페이지 영역 -->
+          <div id="my_pages">
+            <h2>개인 페이지</h2>
+            <ul id="page_list">
+              <!-- 예시 -->
+              <!-- 펼쳐져 있는 부모페이지1 -->
+              <li>
+                <div>
+                  <button class="toggle_btn">▼</button>
+                  <a href="#">부모페이지1</a>
+                  <div class="btns">
+                    <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                    <button class="pin_btn">📌</button>
+                    <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                  </div>
+                </div>
+                <ul class="children open">
+                  <li>
+                    <a href="#">자식 페이지 1-1</a>
+                    <div class="btns">
+                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                    <button class="pin_btn">📌</button>
+                    <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="#">자식 페이지 1-2</a>
+                    <div class="btns">
+                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                      <button class="pin_btn pinned">📌해제</button>
+                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- 펼쳐져 있는 부모페이지2 -->
+              <li>
+                <div>
+                  <button class="toggle_btn">▼</button>
+
+                  <a href="#">부모페이지2</a>
+                  <div class="btns">
+                    <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                    <button class="pin_btn">📌</button>
+                    <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                  </div>
+                </div>
+                <ul class="children open">
+                  <li>
+                    <a href="#">자식 페이지 2-1</a>
+                    <div class="btns">
+                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                      <button class="pin_btn">📌</button>
+                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- 접혀 있는 부모페이지3 -->
+              <li>
+                <div>
+                  <button class="toggle_btn">▶</button>
+                  <a href="#">부모페이지3</a>
+                  <div class="btns">
+                    <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                    <button class="pin_btn">📌</button>
+                    <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                  </div>
+                </div>
+                <ul class="children">
+                  <li>
+                    <a href="#">자식 페이지 3-1</a>
+                    <div class="btns">
+                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                      <button class="pin_btn">📌</button>
+                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="#">자식 페이지 3-2</a>
+                    <div class="btns">
+                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                      <button class="pin_btn">📌</button>
+                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div>
+                  <a href="#">부모페이지4</a>
+                  <div class="btns">
+                    <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                    <button class="pin_btn">📌</button>
+                    <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button class="add_new_page">새 페이지 추가</button>
+          </div>
+        </section>
+
+        <!-- 페이지 편집창 -->
+        <section id="editor">
+          <div class="toolbar">
+            <button id="smallerfont">글씨 작게</button>
+            <button id="largerfont">글씨 크게</button>
+            <button class="bold_toggle">Bold 적용</button>
+          </div>
+          <input type="text" id="page_title" placeholder="새 페이지" />
+          <textarea id="page_contents" placeholder="내용을 입력하세요"></textarea>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
