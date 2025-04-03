@@ -27,7 +27,7 @@ function createDocumentElement(doc) {
         <ul class="children"></ul>
     `;
 
-    // 하위 문서 렌더링
+    // 하위 문서
     const childrenContainer = li.querySelector('.children');
     doc.documents.forEach((childDoc) => {
         const childItem = createDocumentElement(childDoc);
@@ -44,7 +44,7 @@ function createDocumentElement(doc) {
     return li;
 }
 
-// 변경 감지 및 즉시 반영 (Long Polling)
+// 변경 감지 및 즉시 반영
 function fetchAndUpdate() {
     window.api
         .fetchDocuments()
@@ -62,4 +62,11 @@ function fetchAndUpdate() {
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', () => {
     fetchAndUpdate(); // Long Polling 시작
+
+    // "새 페이지 추가" 버튼 클릭 시 Root Document 생성
+    document.querySelector('.add_new_page').addEventListener('click', () => {
+        window.api.createDocument('새 페이지', null).then(() => {
+            fetchAndUpdate(); // 문서 생성 후 즉시 갱신
+        });
+    });
 });
