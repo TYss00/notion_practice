@@ -18,7 +18,7 @@ function createDocumentElement(doc) {
 
     li.innerHTML = `
         <div class="document-item">
-            <span class="doc-title">${doc.title}</span>
+            <a href="#">${doc.title}</a>
             <div class="btns">
                 <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
                 <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>

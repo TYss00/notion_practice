@@ -1,7 +1,7 @@
 const API_URL = 'https://kdt-api.fe.dev-cos.com/documents';
 const HEADERS = {
     'Content-Type': 'application/json',
-    'x-username': 'TYs', // 여기에 api이름 넣기
+    'x-username': 'T', // 여기에 api이름 넣기
 };
 
 // 문서 목록 가져오기
