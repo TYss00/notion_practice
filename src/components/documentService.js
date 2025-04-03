@@ -1,12 +1,13 @@
+// 이전 문서 상태 저장
+let previousDocuments = null;
+
 // 문서 목록을 가져와서 표시
-function renderDocuments() {
-    window.api.fetchDocuments().then((documents) => {
-        const pageList = document.getElementById('page_list');
-        pageList.innerHTML = ''; // 기존 목록 초기화
-        documents.forEach((doc) => {
-            const listItem = createDocumentElement(doc);
-            pageList.appendChild(listItem);
-        });
+function renderDocuments(documents) {
+    const pageList = document.getElementById('page_list');
+    pageList.innerHTML = ''; // 기존 목록 초기화
+    documents.forEach((doc) => {
+        const listItem = createDocumentElement(doc);
+        pageList.appendChild(listItem);
     });
 }
 
@@ -35,23 +36,30 @@ function createDocumentElement(doc) {
 
     // `+` 버튼 클릭 시, 하위 문서 추가
     li.querySelector('.add_btn').addEventListener('click', () => {
-        window.api.createDocument('새 문서', doc.id);
+        window.api.createDocument('새 페이지', doc.id).then(() => {
+            fetchAndUpdate(); // 문서 생성 후 즉시 갱신
+        });
     });
 
     return li;
 }
 
-// 1초마다 변경된 데이터 확인 (Polling)
-let previousDocuments = [];
-function pollForUpdates() {
-    window.api.fetchDocuments().then((newDocuments) => {
-        if (JSON.stringify(previousDocuments) !== JSON.stringify(newDocuments)) {
-            previousDocuments = newDocuments;
-            renderDocuments();
-        }
-    });
+// 변경 감지 및 즉시 반영 (Long Polling)
+function fetchAndUpdate() {
+    window.api
+        .fetchDocuments()
+        .then((newDocuments) => {
+            if (!previousDocuments || JSON.stringify(previousDocuments) !== JSON.stringify(newDocuments)) {
+                // console.log('변경 감지, 문서 갱신', newDocuments);
+                previousDocuments = newDocuments;
+                renderDocuments(newDocuments);
+            }
+            setTimeout(fetchAndUpdate, 1000); // 1초 후 다시 요청
+        })
+        .catch(() => setTimeout(fetchAndUpdate, 2000)); // 실패 시 2초 후 재시도
 }
-setInterval(pollForUpdates, 1000); // 1초마다 변경 감지
 
 // 페이지 로드 시 실행
-document.addEventListener('DOMContentLoaded', renderDocuments);
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndUpdate(); // Long Polling 시작
+});
