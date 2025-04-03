@@ -16,6 +16,7 @@ function createDocumentElement(doc) {
     const li = document.createElement('li');
     li.dataset.id = doc.id; // 문서 ID 저장
 
+    // a태그부분에 click event하려면 class추가해야 될 수도 있음...
     li.innerHTML = `
         <div class="document-item">
             <a href="#">${doc.title}</a>
