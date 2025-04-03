@@ -1,63 +1,44 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 사이드 바 접기 기능
-    // const sidebar = document.getElementById('sidebar');
-    // const sidebarButton = document.getElementById('sidebar_toggle');
-    // sidebarButton.addEventListener('click', (e) => {
-    //     sidebar.className = "closed";
-    // })
+    // 페이지(제목)를 눌렀을 때 editor에 내용 띄우기
+    const parentsPages = Array.from(document.querySelectorAll('a'));
+    const pageTitle = document.getElementById('page_title');
+    const pageContents = document.getElementById('page_contents');
 
-    // 새 페이지 추가 버튼 눌렀을 때
-
-    const addNewPages = Array.from(document.getElementsByClassName('add_new_page'));
-    addNewPages.forEach((button) => {
-        button.addEventListener('click', async (e) => {
+    parentsPages.forEach((page) => {
+        page.addEventListener('click', async (e) => {
             e.preventDefault();
+            const pageId = e.currentTarget.id;
+            console.log(pageId);
             try {
-                const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
-                  method: "POST",
+                const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${pageId}`, {
+                  method: "GET",
                   headers: {
                     "Content-type" : "application/json",
                     "x-username": "4teamteam",
-                  },
-                  body: JSON.stringify({
-                    title: "첫 번째 문서",
-                    parent: null,
-                  }),
+                  }
                 });
                 if (!response.ok) {
                   throw new Error("Network response was not ok!");
                 }
-                const data = await response.json();
-                addPagesList(data);
+                const json = await response.json();
+                setContents(json);
               } catch (error) {
                 console.error(error);
               }
+
+            })
+
+            function setContents(data){
+                pageTitle.innerHTML = data["title"];
+                pageContents.innerHTML = data["content"];
+
+                // 배열을 초기화 하여 히스토리 비움
+                // 새로운 페이지를 열 때는 
+                //기존 기록을 다 버리고 새로 시작해야 하니까 히스토리를 완전히 초기화하는 것!
+                // history.back = [];
+                // history.forward = [];
+
+            }
         })
     })
-
-    function addPagesList(data) {
-        const pageList = document.getElementById('page_list');
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-
-        a.href = "#";
-        a.id = data.id;
-        a.textContent = data.title || "Title";
-        li.appendChild(a);
-        pageList.appendChild(li);
-    }
-       
-
-    // 부모 페이지를 눌렀을 때 editor에 내용 띄우기
-    const parentsPages = Array.from(document.querySelectorAll('#page_list > li'));
-    //console.log(ParentsPages);
-    parentsPages.forEach((page) => {
-        page.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-        })
-    })
-
-
-})
