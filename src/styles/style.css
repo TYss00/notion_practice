@@ -10,49 +10,91 @@ main {
 }
 
 /* 사이드바 */
-#sidebar_toggle {
-  margin-left: auto;
-}
-
 /* 메인 화면 레이아웃 */
 #main_screen {
   display: flex;
+  width: 100%;
   height: 100vh;
 }
 
 /* 사이드바 스타일 */
-
 h1 {
   margin: 5px;
   padding: 3px;
 }
-
-#sidebar {
-  width: 300px;
-  background: #be7b7b;
-  padding: 15px;
-  overflow-y: auto;
-  transition: width 0.3s ease-in-out;
-  border-right: 1px solid #ddd;
+/* 햄버거 메뉴바 */
+input[id="menuicon"] {
+  display: none;
+}
+input[id="menuicon"] + label {
+  display: block;
+  width: 60px;
+  height: 40px;
   position: relative;
+  cursor: pointer;
 }
-
-#sidebar.open {
-  width: 300px;
-}
-
-#sidebar.closed {
-  width: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.sidebar_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+input[id="menuicon"] + label span {
+  display: block;
+  position: absolute;
   width: 100%;
+  height: 5px;
+  border-radius: 30px;
+  background: #222;
+  transition: all 0.35s;
+}
+
+/* 햄버거 메뉴 아이콘 */
+input[id="menuicon"] + label span:nth-child(1) {
+  top: 0;
+}
+input[id="menuicon"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+input[id="menuicon"] + label span:nth-child(3) {
+  bottom: 0;
+}
+/* 아이콘을 클릭해서 사이드바 펼쳤을 때 */
+input[id="menuicon"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+input[id="menuicon"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+input[id="menuicon"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+/* 사이드바 공간 */
+div[class="sidebar"] {
+  width: 300px;
+  height: 100%;
+  background: aliceblue;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  z-index: 1;
+  transition: all 0.35s;
+  box-sizing: border-box;
+}
+input[id="menuicon"]:checked + label + div {
+  left: 0;
+}
+
+input[id="menuicon"] + label {
+  display: block;
+  width: 30px;
+  height: 25px;
+  position: fixed;
+  left: 0;
+  top: calc(50%-25px);
+  transition: all 0.35s;
+  cursor: pointer;
+}
+input[id="menuicon"]:checked + label {
+  z-index: 2;
+  left: 300px;
 }
 
 /* 페이지 리스트 스타일 */
@@ -60,29 +102,36 @@ ul {
   list-style: none;
 }
 
+#page_list {
+  width: 100%;
+  padding: 0 10px;
+}
+
 #page_list > li {
   display: flex;
   flex-direction: column; /* 부모 요소는 세로 정렬 */
   align-items: flex-start;
   gap: 5px;
+  width: 100%;
 }
 
 #page_list > li > div,
 #page_list > li > ul > li {
   display: flex;
   align-items: center;
-  gap: 5px;
+  justify-content: space-between;
   width: 100%;
+  padding-right: 10px;
+  box-sizing: border-box;
 }
 
 #page_list > li > ul {
   width: 100%;
-  padding: 0;
-  margin: 0;
+  padding-left: 15px;
 }
 
 #page_list > li > ul > li {
-  width: 97.2%; /* 부모보다 조금 작게 */
+  width: calc(100%-5px);
 }
 
 #page_list > li a {
@@ -99,10 +148,10 @@ li {
 }
 
 .btns {
+  position: absolute;
+  right: 10px;
   display: flex;
-  align-items: center;
   gap: 5px;
-  margin-left: auto;
 }
 
 .btns button {
@@ -129,9 +178,12 @@ a {
 /* 페이지 편집 영역 */
 #editor {
   flex-grow: 1;
+  width: 100%;
+  margin-left: 300px; /* 햄버거 버튼 공간 확보 */
+  transition: margin-left 0.35s ease, width 0.35s ease;
   padding: 20px;
   background: #fff;
-  display: flex;
+  display: block;
   flex-direction: column;
 }
 
