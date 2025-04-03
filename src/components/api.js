@@ -43,7 +43,7 @@ async function createDocument(title, parent = null) {
     }
 }
 
-// 문서 수정하기
+// 특정 문서 수정하기
 async function updateDocument(documentId, title, content) {
     try {
         const res = await fetch(`${API_URL}/${documentId}`, {
@@ -82,10 +82,30 @@ async function deleteDocument(documentId) {
     }
 }
 
+// 특정 문서 가져오기
+async function getDocumentById(documentId) {
+    try {
+        const res = await fetch(`${API_URL}/${documentId}`, {
+            method: 'GET',
+            headers: HEADERS,
+        });
+
+        if (!res.ok) {
+            throw new Error(`문서 가져오기 실패! 상태 코드: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('문서 가져오는 중 오류 발생:', error);
+        return null; // 실패 시 null 반환
+    }
+}
+
 // 전역 객체 등록
 window.api = {
     fetchDocuments,
     createDocument,
-    updateDocument, // 추가
-    deleteDocument, // 추가
+    updateDocument,
+    deleteDocument,
+    getDocumentById,
 };
