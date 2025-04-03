@@ -3,30 +3,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 문서 리스트 불러오기 
     async function fetchDocuments() {
-        try {
-            const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
-                headers: { "x-username": "4pra" }
+        const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
+            headers: { "x-username": "4pra" }
+        });
+    
+        if (response.ok) {
+            const documents = await response.json();
+            
+            pageList.innerHTML = ""; 
+            documents.forEach((doc) => {
+                const newItem = createDocumentElement(doc, pageList);
+                fetchAndRenderChildren(doc.id, newItem); 
             });
-
-            if (response.ok) {
-                const documents = await response.json();
-                
-                
-                pageList.innerHTML = ""; // 기존 목록 초기화
-                documents.forEach((doc) => {
-                    const newItem = createDocumentElement(doc, pageList);
-                    fetchAndRenderChildren(doc.id, newItem); 
-                });
-            }
-        } catch (error) {
         }
     }
 
-    // 부모 요소에 추가
+    // 부모 요소에 문서 추가
     function createDocumentElement(doc, parentElement) {
-        if (!parentElement) {
-            return;
-        }
+        if (!parentElement) return;
 
         const newItem = document.createElement("li");
         newItem.dataset.id = doc.id;
@@ -45,26 +39,50 @@ document.addEventListener("DOMContentLoaded", async () => {
         return newItem.querySelector(".child-docs"); 
     }
 
-    // 자식 문서 
+    // 자식 문서 불러오기
     async function fetchAndRenderChildren(parentId, parentElement) {
-        try {
-            const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${parentId}`, {
-                headers: { "x-username": "4pra" }
+        const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${parentId}`, {
+            headers: { "x-username": "4pra" }
+        });
+    
+        if (response.ok) {
+            const parentDoc = await response.json();
+            parentDoc.documents.forEach((childDoc) => {
+                const childList = createDocumentElement(childDoc, parentElement);
+                fetchAndRenderChildren(childDoc.id, childList); 
             });
-
-            if (response.ok) {
-                const parentDoc = await response.json();
-                //console.log(`문서 ${parentId}의 자식 문서:`, parentDoc.documents);
-
-                parentDoc.documents.forEach((childDoc) => {
-                    const childList = createDocumentElement(childDoc, parentElement);
-                    fetchAndRenderChildren(childDoc.id, childList); 
-                });
-            }
-        } catch (error) {
-          //  console.error("실패:", error);
+        } else {
+            
         }
     }
+    
+
+    // 부모 문서 삭제 시, 자식 문서도 함께 삭제하는 함수
+    async function deleteDocumentWithChildren(documentId) {
+    // 부모 문서의 자식 문서 가져오기
+    const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
+        headers: { "x-username": "4pra" }
+    });
+
+    if (!response.ok) return false;
+
+    const parentDoc = await response.json();
+    const childDocs = parentDoc.documents; // 자식 문서 배열
+
+    // 자식 문서 먼저 삭제 (재귀 호출)
+    for (const child of childDocs) {
+        await deleteDocumentWithChildren(child.id);
+    }
+
+    // 부모 문서 삭제
+    const deleteResponse = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json", "x-username": "4pra" }
+    });
+
+    return deleteResponse.ok;
+}
+
 
     // 문서 삭제 기능
     pageList.addEventListener("click", async (event) => {
@@ -75,15 +93,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const documentId = listItem.dataset.id;
 
         if (documentId) {
-            const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
-                method: "DELETE",
-                headers: { "Content-Type": "application/json", "x-username": "4pra" }
-            });
-
-            if (response.ok) {
+            const success = await deleteDocumentWithChildren(documentId);
+            if (success) {
                 listItem.remove(); // 삭제된 문서 제거
-            } else {
-                
             }
         }
     });
