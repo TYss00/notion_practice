@@ -6,7 +6,9 @@ const HEADERS = {
 
 // 문서 목록 가져오기
 function fetchDocuments() {
-    return fetch(API_URL, { headers: HEADERS }).then((res) => res.json());
+    return fetch(API_URL, {
+        headers: HEADERS,
+    }).then((res) => res.json());
 }
 
 // 문서 생성하기
