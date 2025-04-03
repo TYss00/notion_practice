@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
                 method: "DELETE",
                 headers: {
-                    "Content-Type": "application/json", //*필요하나? */
-                    "x-username": "test" // 여기에 본인 API 키 넣기
+                    "Content-Type": "application/json", 
+                    "x-username": "4pra" // 여기에 본인 API 키 넣기
                 }
             });
 
