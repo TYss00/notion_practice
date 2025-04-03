@@ -1,4 +1,4 @@
-body{
+body {
     background: beige;
 }
 
@@ -8,17 +8,12 @@ main {
     display: flex;
     flex-direction: column;
 }
-  
-/* 사용자 이름 입력 화면 */
-#start_screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    height: 100vh;
-    background: #fff;
+
+/* 사이드바 */
+#sidebar_toggle {
+    margin-left: auto;
 }
-            
+
 /* 메인 화면 레이아웃 */
 #main_screen {
     display: flex;
@@ -26,13 +21,20 @@ main {
 }
 
 /* 사이드바 스타일 */
+
+h2 {
+    margin: 5px;
+    padding: 3px;
+}
+
 #sidebar {
     width: 300px;
-    background: #fff;
+    background: #be7b7b;
     padding: 15px;
     overflow-y: auto;
     transition: width 0.3s ease-in-out;
     border-right: 1px solid #ddd;
+    position: relative;
 }
 
 #sidebar.open {
@@ -50,6 +52,7 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 /* 페이지 리스트 스타일 */
@@ -57,29 +60,52 @@ ul {
     list-style: none;
 }
 
+#page_list > li {
+    display: flex;
+    flex-direction: column; /* 부모 요소는 세로 정렬 */
+    align-items: flex-start;
+    gap: 5px;
+}
+
+#page_list > li > div,
+#page_list > li > ul > li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+#page_list > li > ul {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#page_list > li > ul > li {
+    width: 97.2%; /* 부모보다 조금 작게 */
+}
+
+#page_list > li a {
+    display: inline-block;
+    width: auto;
+}
+
 li {
     padding: 8px;
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
     justify-content: flex-start;
 }
 
-.toggle_btn{
+.btns {
     display: flex;
+    align-items: center;
     gap: 5px;
-    margin-top: 5px;
-    border: none;
+    margin-left: auto;
 }
 
-.btns{
-    display: flex;
-    gap: 5px;
-    margin-top: 5px;
-    border: none;
-}
-
-.btns button{
+.btns button {
     padding: 3px 6px;
     font-size: 12px;
     border: 1px solid #ccc;
@@ -88,8 +114,16 @@ li {
     border: none;
 }
 
-.btns button:hover{
+.btns button:hover {
     background: #e0e0e0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    text-align: left;
+    margin-right: 10px;
 }
 
 /* 페이지 편집 영역 */
@@ -99,15 +133,6 @@ li {
     background: #fff;
     display: flex;
     flex-direction: column;
-}
-
-/* 글씨 축소, 확대, 고정 버튼*/
-.toolbar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 5px;
 }
 
 #page_title {
@@ -127,20 +152,32 @@ li {
     resize: none;
 }
 
+/* 맨 밑에 새 페이지 추가 버튼 */
+.add_new_page {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-style: inherit;
+    background-color: rgb(162, 162, 226);
+}
+
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
     #main_screen {
-    flex-direction: column;
+        flex-direction: column;
     }
 
     #sidebar {
-    width: 100%;
-    height: auto;
-    border-right: none;
+        width: 100%;
+        height: auto;
+        border-right: none;
     }
 
     #editor {
-    flex-grow: 1;
-    height: auto;
+        flex-grow: 1;
+        height: auto;
     }
 }
