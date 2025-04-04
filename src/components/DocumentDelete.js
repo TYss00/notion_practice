@@ -57,8 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const childList = createDocumentElement(childDoc, parentElement);
                 fetchAndRenderChildren(childDoc.id, childList); 
             });
-        } else {
-            
         }
     }
     
