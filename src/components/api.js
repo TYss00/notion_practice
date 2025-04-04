@@ -1,5 +1,6 @@
 const API_URL = "https://kdt-api.fe.dev-cos.com/documents";
 const HEADERS = {
+
   "Content-Type": "application/json",
   "x-username": "T", // 여기에 api이름 넣기
 };
@@ -87,6 +88,8 @@ async function deleteDocument(documentId) {
     return false; // 실패 시 false 반환
   }
 }
+    
+
 
 // 특정 문서 가져오기 (Editor.js)
 async function getDocumentById(documentId) {
