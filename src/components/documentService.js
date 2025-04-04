@@ -19,7 +19,7 @@ export function createDocumentElement(doc) {
     // console.log(li);
     // a태그부분에 click event하려면 class추가해야 될 수도 있음...
     li.innerHTML = `
-        <div class="document_item">
+        <div class="document-item">
             <a href="#" data-id="${doc.id}">${doc.title}</a>
             <div class="btns">
                 <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>

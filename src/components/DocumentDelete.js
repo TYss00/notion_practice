@@ -141,8 +141,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const newItem = document.createElement("li");
         newItem.dataset.id = doc.id;
         newItem.innerHTML = `
-            <div>
-                <a href="#">${doc.title}</a>
+            <div class="document-item">
+
+                <a href="#" data-id="${doc.id}">${doc.title}</a>
                 <div class="btns">
                     <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
                     <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
