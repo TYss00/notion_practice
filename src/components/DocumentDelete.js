@@ -19,6 +19,7 @@ export async function deleteDocumentWithChildren(documentId) {
     return result;
   } catch (error) {
     console.error('삭제 중 오류 발생:', error);
+
     return false;
   }
 }

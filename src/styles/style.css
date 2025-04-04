@@ -13,7 +13,7 @@
 
 /* 기본 레이아웃 */
 body {
-  background: beige;
+  background: #ffff;
   margin: 0;
   font-family: "Nanum Gothic", sans-serif;
 }
@@ -38,8 +38,8 @@ input[id="menuicon"] {
 }
 input[id="menuicon"] + label {
   display: block;
-  width: 29.5px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   position: fixed;
   left: 0;
   top: 20px;
@@ -50,28 +50,28 @@ input[id="menuicon"] + label {
 input[id="menuicon"] + label span {
   display: block;
   position: absolute;
-  width: 100%;
-  height: 5px;
+  width: 16px;
+  height: 4px;
   border-radius: 30px;
-  background: #222;
+  background: #5e5e5e;
   transition: all 0.35s;
 }
 input[id="menuicon"] + label span:nth-child(1) {
-  top: 5px;
-  left: 6px;
-  transform: rotate(35deg);
+  top: 6px;
+  transform: rotate(40deg);
 }
 input[id="menuicon"] + label span:nth-child(2) {
-  top: 21px;
-  left: 6px;
-  transform: rotate(-35deg);
+  top: 14px;
+  transform: rotate(-40deg);
 }
 
 input[id="menuicon"]:checked + label span:nth-child(1) {
-  transform: rotate(-30deg);
+  top: 6px;
+  transform: rotate(-40deg);
 }
 input[id="menuicon"]:checked + label span:nth-child(2) {
-  transform: rotate(30deg);
+  top: 14px;
+  transform: rotate(40deg);
 }
 input[id="menuicon"]:checked + label {
   left: 300px;
@@ -85,13 +85,14 @@ input[id="menuicon"]:checked + label {
   position: fixed;
   top: 0;
   left: -300px;
-  z-index: 1;
+  z-index: 3;
   transition: all 0.35s;
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 20px 10px;
   color: #5e5e5e;
+  font-size: 15px;
 }
 
 input[id="menuicon"]:checked + label + div {
@@ -162,6 +163,7 @@ ul.children {
   padding: 3px 6px;
   font-size: 15px;
   background-color: transparent;
+  border: none;
   cursor: pointer;
 }
 .btns button:hover {
@@ -172,12 +174,12 @@ ul.children {
 .add_new_page {
   margin: 10px 0 20px 5px;
   padding: 10px 15px;
-  border: 1px solid #ccc;
-  background: rgb(162, 162, 226);
+  border: 1px solid #b5b5b5;
+  background: #f7f7f7;
   text-align: center;
   width: fit-content;
-  color: black;
-  border-radius: 15px;
+  color: #b5b5b5;
+  border-radius: 5px;
 }
 
 /* 페이지 편집 영역 */
@@ -191,6 +193,7 @@ ul.children {
   background: #fff;
   display: block;
   flex-direction: column;
+  padding-left: 100px;
 }
 
 /* 제목 입력 */
@@ -200,6 +203,7 @@ ul.children {
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
+  font-size: 25px;
 }
 /* 내용 입력 */
 #page_contents {
@@ -208,8 +212,70 @@ ul.children {
   width: 99%;
   height: 90%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 13px;
   resize: none;
+}
+/* 실시간 시간 */
+#datetime-display {
+  position: fixed;
+  top: 25px;
+  left: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: transparent;
+  z-index: 0;
+}
+/* 달력 */
+#calendar-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  width: 220px;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  border-radius: 14px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+#calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#calendar-title {
+  font-weight: bold;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+}
+
+#calendar div {
+  text-align: center;
+  padding: 6px;
+  font-size: 14px;
+}
+.sunday {
+  color: red;
+}
+
+.saturday {
+  color: blue;
+}
+
+.today {
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  font-weight: bold;
 }
 
 /* 반응형 */
@@ -228,4 +294,54 @@ ul.children {
     flex-grow: 1;
     height: auto;
   }
+}
+
+html {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+/* 상속 안 되는 요소 */
+input,
+textarea,
+button,
+a {
+  font-family: inherit;
+}
+
+/* placeholder */
+::placeholder {
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: inherit;
+}
+
+/* webkit 브라우저 */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  font-family: inherit;
+}
+
+/* sidebar와 editor 내: bold */
+#sidebar .add_new_page,
+#editor #page_title,
+#sidebar .sidebar #my_pages #page_list,
+#sidebar .sidebar #my_pages #page_list * {
+  font-weight: 700;
+}
+
+/* placeholder: bold */
+#page_title::placeholder,
+textarea::placeholder,
+#page_title::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+#page_title::-moz-placeholder,
+textarea::-moz-placeholder,
+#page_title:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+#page_title::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  font-weight: 700;
 }
