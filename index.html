@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="src/styles/reset.css" />
     <link rel="stylesheet" href="src/styles/style.css" />
     <script src="https://kit.fontawesome.com/cd31889dca.js" crossorigin="anonymous"></script>
-
+    <script src="src/components/api.js"></script>
+    <script src="src/components/documentService.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -19,12 +20,12 @@
           <label for="menuicon">
             <span></span>
             <span></span>
-            <span></span>
           </label>
           <div class="sidebar">
             <!-- 개인 페이지 영역 -->
+            <button class="add_new_page">새 페이지 추가</button>
             <div id="my_pages">
-              <h1>개인 페이지</h1>
+              <!-- <h1>개인 페이지</h1> -->
               <ul id="page_list">
                 <!-- 예시 -->
                 <!-- 부모페이지1 -->
@@ -108,7 +109,6 @@
                   </div>
                 </li>
               </ul>
-              <button class="add_new_page">새 페이지 추가</button>
             </div>
           </div>
         </section>
