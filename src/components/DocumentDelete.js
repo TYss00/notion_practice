@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const pageList = document.getElementById("page_list"); 
 
     // 문서 리스트 불러오기 
-    async function fetchDocuments() { 
+    async function fetch2Documents() { 
         const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
             headers: { 
                 'Content-Type': 'application/json',
@@ -113,5 +113,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // 전체 문서 불러오기
-   // fetch2Documents();
+    fetch2Documents();
 });
