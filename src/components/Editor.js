@@ -1,3 +1,6 @@
+import { getDocumentById } from "./api.js";
+import { AutoSave } from "./AutoSave.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const pageList = document.getElementById('page_list');
 
@@ -18,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 제목, 내용을 바꿔주는 함수
-function setContents(data) {
+export function setContents(data) {
     //console.log(data);
     
     const pageTitle = document.getElementById('page_title');
