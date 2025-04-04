@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const pageId = update.dataset.id;
             //console.log('클릭된 페이지 ID:', pageId);
-
             
             window.history.pushState[{},'',`/documents/${pageId}`]
             const json = await getDocumentById(pageId);

@@ -1,235 +1,231 @@
+/* 나눔 고딕 일반 */
+.nanum-gothic-regular {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* 나눔 고딕 bold */
+.nanum-gothic-bold {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* 기본 레이아웃 */
 body {
-    background: beige;
+  background: beige;
+  margin: 0;
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 메인 화면 */
+#main_screen {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* 햄버거 메뉴바 */
+input[id="menuicon"] {
+  display: none;
+}
+input[id="menuicon"] + label {
+  display: block;
+  width: 29.5px;
+  height: 25px;
+  position: fixed;
+  left: 0;
+  top: 20px;
+  transition: all 0.35s;
+  cursor: pointer;
+  z-index: 2;
+}
+input[id="menuicon"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  border-radius: 30px;
+  background: #222;
+  transition: all 0.35s;
+}
+input[id="menuicon"] + label span:nth-child(1) {
+  top: 5px;
+  left: 6px;
+  transform: rotate(35deg);
+}
+input[id="menuicon"] + label span:nth-child(2) {
+  top: 21px;
+  left: 6px;
+  transform: rotate(-35deg);
+}
+
+input[id="menuicon"]:checked + label span:nth-child(1) {
+  transform: rotate(-30deg);
+}
+input[id="menuicon"]:checked + label span:nth-child(2) {
+  transform: rotate(30deg);
+}
+input[id="menuicon"]:checked + label {
+  left: 300px;
 }
 
 /* 사이드바 */
-/* 메인 화면 레이아웃 */
-#main_screen {
-    display: flex;
-    width: 100%;
-    height: 100vh;
+.sidebar {
+  width: 300px;
+  height: 100%;
+  background: #f7f7f7;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  z-index: 1;
+  transition: all 0.35s;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 10px;
+  color: #5e5e5e;
 }
 
-/* 사이드바 스타일 */
-h1 {
-    margin: 5px;
-    padding: 3px;
-}
-/* 햄버거 메뉴바 */
-input[id='menuicon'] {
-    display: none;
-}
-input[id='menuicon'] + label {
-    display: block;
-    width: 60px;
-    height: 40px;
-    position: relative;
-    cursor: pointer;
-}
-input[id='menuicon'] + label span {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    border-radius: 30px;
-    background: #222;
-    transition: all 0.35s;
+input[id="menuicon"]:checked + label + div {
+  left: 0;
 }
 
-/* 햄버거 메뉴 아이콘 */
-input[id='menuicon'] + label span:nth-child(1) {
-    top: 0;
-}
-input[id='menuicon'] + label span:nth-child(2) {
-    top: 50%;
-    transform: translateY(-50%);
-}
-input[id='menuicon'] + label span:nth-child(3) {
-    bottom: 0;
-}
-/* 아이콘을 클릭해서 사이드바 펼쳤을 때 */
-input[id='menuicon']:checked + label span:nth-child(1) {
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-}
-input[id='menuicon']:checked + label span:nth-child(2) {
-    opacity: 0;
-}
-input[id='menuicon']:checked + label span:nth-child(3) {
-    bottom: 50%;
-    transform: translateY(50%) rotate(-45deg);
-}
-/* 사이드바 공간 */
-div[class='sidebar'] {
-    width: 300px;
-    height: 100%;
-    background: aliceblue;
-    position: fixed;
-    top: 0;
-    left: -300px;
-    z-index: 1;
-    transition: all 0.35s;
-    box-sizing: border-box;
-}
-input[id='menuicon']:checked + label + div {
-    left: 0;
-}
-
-input[id='menuicon'] + label {
-    display: block;
-    width: 30px;
-    height: 25px;
-    position: fixed;
-    left: 0;
-    top: calc(50%-25px);
-    transition: all 0.35s;
-    cursor: pointer;
-}
-input[id='menuicon']:checked + label {
-    z-index: 2;
-    left: 300px;
-}
-
-/* 페이지 리스트 스타일 */
+/* 페이지 리스트 */
 ul {
-    list-style: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-#page_list {
-    width: 100%;
-    padding: 0 10px;
+/* 하위 페이지 들여쓰기 */
+ul.children {
+  padding-left: 15px;
 }
 
-#page_list > li {
-    display: flex;
-    flex-direction: column; /* 부모 요소는 세로 정렬 */
-    align-items: flex-start;
-    gap: 5px;
-    width: 100%;
+#page_list li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-#page_list > li > div,
-#page_list > li > ul > li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-right: 10px;
-    box-sizing: border-box;
+/* 줄 기준 박스 */
+.document-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6px 0;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
 }
 
-#page_list > li > ul {
-    width: 100%;
-    padding-left: 15px;
+.document-item:hover {
+  background-color: #d9d9d9;
+  border-radius: 4px;
 }
 
-#page_list > li > ul > li {
-    width: calc(100%-5px);
+/* 하위의 하위에 생성되는 텍스트*/
+.document-item a {
+  flex-grow: 1;
+  padding-right: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
 }
 
-#page_list > li a {
-    display: inline-block;
-    width: auto;
-}
-
-li {
-    padding: 8px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    justify-content: flex-start;
-}
-
+/* 버튼 고정 */
 .btns {
-    position: absolute;
-    right: 10px;
-    display: flex;
-    gap: 5px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 5px;
 }
 
+/* 추가,삭제 버튼 */
 .btns button {
-    padding: 3px 6px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    background: #f8f8f8;
-    cursor: pointer;
-    border: none;
+  padding: 3px 6px;
+  font-size: 15px;
+  background-color: transparent;
+  cursor: pointer;
 }
-
 .btns button:hover {
-    background: #e0e0e0;
+  background: #e0e0e0;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-    text-align: left;
-    margin-right: 10px;
+/* 새 페이지 추가 버튼 */
+.add_new_page {
+  margin: 10px 0 20px 5px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background: rgb(162, 162, 226);
+  text-align: center;
+  width: fit-content;
+  color: black;
+  border-radius: 15px;
 }
 
 /* 페이지 편집 영역 */
 #editor {
-    flex-grow: 1;
-    width: 100%;
-    margin-left: 300px; /* 햄버거 버튼 공간 확보 */
-    transition: margin-left 0.35s ease, width 0.35s ease;
-    padding: 20px;
-    background: #fff;
-    display: block;
-    flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  height: auto;
+  margin-left: 300px;
+  transition: margin-left 0.35s ease, width 0.35s ease;
+  padding: 20px;
+  background: #fff;
+  display: block;
+  flex-direction: column;
 }
 
+/* 제목 입력 */
 #page_title {
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 5px;
+  font-size: 24px;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
 }
-
+/* 내용 입력 */
 #page_contents {
-    flex-grow: 1;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    resize: none;
+  flex-grow: 1;
+  border: none;
+  width: 99%;
+  height: 90%;
+  padding: 10px;
+  font-size: 16px;
+  resize: none;
 }
 
-/* 맨 밑에 새 페이지 추가 버튼 */
-.add_new_page {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid #ccc;
-    background: #f8f8f8;
-    font-style: inherit;
-    background-color: rgb(162, 162, 226);
-}
-
-/* 반응형 디자인 */
+/* 반응형 */
 @media screen and (max-width: 768px) {
-    #main_screen {
-        flex-direction: column;
-    }
+  #main_screen {
+    flex-direction: column;
+  }
 
-    #sidebar {
-        width: 100%;
-        height: auto;
-        border-right: none;
-    }
+  #sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+  }
 
-    #editor {
-        flex-grow: 1;
-        height: auto;
-    }
+  #editor {
+    flex-grow: 1;
+    height: auto;
+  }
 }
