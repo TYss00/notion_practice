@@ -1,115 +1,51 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const pageList = document.getElementById("page_list"); 
+import { getDocumentById, deleteDocument } from './api.js';
+import { fetchAndUpdate } from './documentService.js';
+import { clearEditor } from './Editor.js'
 
-    // 문서 리스트 불러오기 
-    async function fetch2Documents() { 
-        const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
-            headers: { 
-                'Content-Type': 'application/json',
-                "x-username": "4pra"
-             }
-        });
-    
-        if (response.ok) {
-            const documents = await response.json();
-            
-            pageList.innerHTML = ""; 
-            documents.forEach((doc) => {
-                const newItem = createDocumentElement(doc, pageList);
-                fetchAndRenderChildren(doc.id, newItem); 
-            });
-        }
+document.addEventListener('DOMContentLoaded', () => {
+     initDeleteHandler();
+});
+
+export async function deleteDocumentWithChildren(documentId) {
+  try {
+    const doc = await getDocumentById(documentId);
+    if (!doc) return false;
+
+    for (const child of doc.documents) {
+      await deleteDocumentWithChildren(child.id);
     }
 
-    // 부모 요소에 문서 추가
-    function createDocumentElement(doc, parentElement) {
-        if (!parentElement) return;
-
-        const newItem = document.createElement("li");
-        newItem.dataset.id = doc.id;
-        newItem.innerHTML = `
-            <div>
-                <a href="#">${doc.title}</a>
-                <div class="btns">
-                    <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                    <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                </div>
-            </div>
-            <ul class="child-docs"></ul> 
-        `;
-
-        parentElement.appendChild(newItem);
-        return newItem.querySelector(".child-docs"); 
-    }
-
-    // 자식 문서 불러오기
-    async function fetchAndRenderChildren(parentId, parentElement) {
-        const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${parentId}`, {
-            headers: { 
-                'Content-Type': 'application/json',
-                "x-username": "4pra"
-             }
-        });
-    
-        if (response.ok) {
-            const parentDoc = await response.json();
-            parentDoc.documents.forEach((childDoc) => {
-                const childList = createDocumentElement(childDoc, parentElement);
-                fetchAndRenderChildren(childDoc.id, childList); 
-            });
-        }
-    }
-    
-
-    // 부모 문서 삭제 시, 자식 문서도 함께 삭제하는 함수
-    async function deleteDocumentWithChildren(documentId) {
-    // 부모 문서의 자식 문서 가져오기
-    const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
-        headers: { 
-            'Content-Type': 'application/json',
-            "x-username": "4pra" 
-        }
-    });
-
-    if (!response.ok) return false;
-
-    const parentDoc = await response.json();
-    const childDocs = parentDoc.documents; // 자식 문서 배열
-
-    // 자식 문서 먼저 삭제 (재귀 호출)
-    for (const child of childDocs) {
-        await deleteDocumentWithChildren(child.id);
-    }
-
-    // 부모 문서 삭제
-    const deleteResponse = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
-        method: "DELETE",
-        headers: { 
-            "Content-Type": "application/json", 
-            "x-username": "4pra" 
-        }
-    });
-
-    return deleteResponse.ok;
+    const result = await deleteDocument(documentId);
+    return result;
+  } catch (error) {
+    console.error('삭제 중 오류 발생:', error);
+    return false;
+  }
 }
 
+export function initDeleteHandler() {
+  const pageList = document.getElementById('page_list');
 
-    // 문서 삭제 기능
-    pageList.addEventListener("click", async (event) => {
-        const deleteButton = event.target.closest(".delete_btn");
-        if (!deleteButton) return;
+  pageList.addEventListener('click', async (e) => {
+    const deleteBtn = e.target.closest('.delete_btn');
+    if (!deleteBtn) return;
 
-        const listItem = deleteButton.closest("li");
-        const documentId = listItem.dataset.id;
+    const listItem = deleteBtn.closest('li');
+    const documentId = listItem?.dataset?.id;
+    if (!documentId) return;
 
-        if (documentId) {
-            const success = await deleteDocumentWithChildren(documentId);
-            if (success) {
-                listItem.remove(); // 삭제된 문서 제거
-            }
-        }
-    });
+    const confirmed = confirm('이 문서와 하위 문서를 삭제할까요?');
+    if (!confirmed) return;
 
-    // 전체 문서 불러오기
-    fetch2Documents();
-});
+    const success = await deleteDocumentWithChildren(documentId);
+    if (success) {
+      listItem.remove();
+      await fetchAndUpdate();
+      const currentPageId = window.location.pathname.split('/documents/')[1];
+      if (currentPageId === documentId) {
+        history.pushState({}, '', '/'); // 주소 초기화
+        clearEditor(); // 에디터 내용 초기화
+      }
+    }
+  });
+}
