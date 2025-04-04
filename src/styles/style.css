@@ -38,7 +38,7 @@ input[id="menuicon"] {
 }
 input[id="menuicon"] + label {
   display: block;
-  width: 30px;
+  width: 29.5px;
   height: 25px;
   position: fixed;
   left: 0;
@@ -57,26 +57,21 @@ input[id="menuicon"] + label span {
   transition: all 0.35s;
 }
 input[id="menuicon"] + label span:nth-child(1) {
-  top: 0;
+  top: 5px;
+  left: 6px;
+  transform: rotate(35deg);
 }
 input[id="menuicon"] + label span:nth-child(2) {
-  top: 50%;
-  transform: translateY(-50%);
-}
-input[id="menuicon"] + label span:nth-child(3) {
-  bottom: 0;
+  top: 21px;
+  left: 6px;
+  transform: rotate(-35deg);
 }
 
 input[id="menuicon"]:checked + label span:nth-child(1) {
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
+  transform: rotate(-30deg);
 }
 input[id="menuicon"]:checked + label span:nth-child(2) {
-  opacity: 0;
-}
-input[id="menuicon"]:checked + label span:nth-child(3) {
-  bottom: 50%;
-  transform: translateY(50%) rotate(-45deg);
+  transform: rotate(30deg);
 }
 input[id="menuicon"]:checked + label {
   left: 300px;
