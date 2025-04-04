@@ -2,9 +2,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const pageList = document.getElementById("page_list"); 
 
     // 문서 리스트 불러오기 
-    async function fetchDocuments() {
+    async function fetchDocuments() { 
         const response = await fetch("https://kdt-api.fe.dev-cos.com/documents", {
-            headers: { "x-username": "4pra" }
+            headers: { 
+                'Content-Type': 'application/json',
+                "x-username": "4pra"
+             }
         });
     
         if (response.ok) {
@@ -42,7 +45,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 자식 문서 불러오기
     async function fetchAndRenderChildren(parentId, parentElement) {
         const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${parentId}`, {
-            headers: { "x-username": "4pra" }
+            headers: { 
+                'Content-Type': 'application/json',
+                "x-username": "4pra"
+             }
         });
     
         if (response.ok) {
@@ -61,7 +67,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function deleteDocumentWithChildren(documentId) {
     // 부모 문서의 자식 문서 가져오기
     const response = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
-        headers: { "x-username": "4pra" }
+        headers: { 
+            'Content-Type': 'application/json',
+            "x-username": "4pra" 
+        }
     });
 
     if (!response.ok) return false;
@@ -77,7 +86,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 부모 문서 삭제
     const deleteResponse = await fetch(`https://kdt-api.fe.dev-cos.com/documents/${documentId}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json", "x-username": "4pra" }
+        headers: { 
+            "Content-Type": "application/json", 
+            "x-username": "4pra" 
+        }
     });
 
     return deleteResponse.ok;
@@ -101,5 +113,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // 전체 문서 불러오기
-    fetchDocuments();
+   // fetch2Documents();
 });

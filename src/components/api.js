@@ -64,7 +64,6 @@ async function updateDocument(documentId, title, content) {
 }
 
 // 문서 삭제하기
-/*
 async function deleteDocument(documentId) {
     try {
         const res = await fetch(`${API_URL}/${documentId}`, {
@@ -82,30 +81,7 @@ async function deleteDocument(documentId) {
         return false; // 실패 시 false 반환
     }
 }
-    */
-
-async function deleteDocument(documentId) {
-    try {
-        console.log(`🚀 DELETE 요청: ${API_URL}/${documentId}`); // 요청 URL 확인
-
-        const res = await fetch(`${API_URL}/${documentId}`, {
-            method: 'DELETE',
-            headers: HEADERS
-        });
-
-        if (!res.ok) {
-            const errorResponse = await res.text();
-            console.error(`서버 응답: ${errorResponse}`); // 서버 응답 내용 출력
-            throw new Error(`문서 삭제 실패! 상태 코드: ${res.status}, 응답: ${errorResponse}`);
-        }
-
-        console.log(`문서 ${documentId} 삭제 성공!`);
-        return true; // 삭제 성공
-    } catch (error) {
-        console.error('문서 삭제 중 오류 발생:', error);
-        return false; // 실패 시 false 반환
-    }
-}
+    
 
 
 // 특정 문서 가져오기
