@@ -16,9 +16,10 @@ function createDocumentElement(doc) {
   const li = document.createElement("li");
   li.dataset.id = doc.id; // 문서 ID 저장
 
-  li.innerHTML = `
-        <div class="document-item">
-            <a href="#">${doc.title}</a>
+    // a태그부분에 click event하려면 class추가해야 될 수도 있음...
+    li.innerHTML = `
+        <div class="document_item">
+            <a href="#" data-id="${doc.id}">${doc.title}</a>
             <div class="btns">
                 <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
                 <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
@@ -34,39 +35,44 @@ function createDocumentElement(doc) {
     childrenContainer.appendChild(childItem);
   });
 
-  // `+` 버튼 클릭 시, 하위 문서 추가
-  li.querySelector(".add_btn").addEventListener("click", () => {
-    window.api.createDocument("새 페이지", doc.id).then(() => {
-      fetchAndUpdate(); // 문서 생성 후 즉시 갱신
+    // `+` 버튼 클릭 시, 하위 문서 추가
+    li.querySelector('.add_btn').addEventListener('click', () => {
+        window.api.createDocument('새 페이지', doc.id).then(() => { // doc.id로 주면 자식 페이지
+            fetchAndUpdate(); // 문서 생성 후 즉시 갱신
+        });
+
     });
-  });
+
 
   return li;
 }
 
 // 변경 감지 및 즉시 반영
 function fetchAndUpdate() {
-  window.api
-    .fetchDocuments()
-    .then((newDocuments) => {
-      if (!previousDocuments || JSON.stringify(previousDocuments) !== JSON.stringify(newDocuments)) {
-        // console.log('변경 감지, 문서 갱신', newDocuments);
-        previousDocuments = newDocuments;
-        renderDocuments(newDocuments);
-      }
-      setTimeout(fetchAndUpdate, 1000); // 1초 후 다시 요청
-    })
-    .catch(() => setTimeout(fetchAndUpdate, 2000)); // 실패 시 2초 후 재시도
+    //console.log('아아이')
+    window.api
+        .fetchDocuments()
+        .then((newDocuments) => {
+            if (!previousDocuments || JSON.stringify(previousDocuments) !== JSON.stringify(newDocuments)) {
+                // console.log('변경 감지, 문서 갱신', newDocuments);
+                previousDocuments = newDocuments;
+            }
+            renderDocuments(newDocuments);
+            // setTimeout(fetchAndUpdate, 1000); // 1초 후 다시 요청
+        })
+        .catch(() => setTimeout(fetchAndUpdate, 2000)); // 실패 시 2초 후 재시도
 }
 
 // 페이지 로드 시 실행
-document.addEventListener("DOMContentLoaded", () => {
-  fetchAndUpdate(); // Long Polling 시작
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndUpdate(); 
 
-  // "새 페이지 추가" 버튼 클릭 시 Root Document 생성
-  document.querySelector(".add_new_page").addEventListener("click", () => {
-    window.api.createDocument("새 페이지", null).then(() => {
-      fetchAndUpdate(); // 문서 생성 후 즉시 갱신
+    // "새 페이지 추가" 버튼 클릭 시 Root Document 생성
+    document.querySelector('.add_new_page').addEventListener('click', () => {
+        // createDocument를 하면 서버에 데이터를 추가하게 하는것. null로 주면 부모 페이지 
+        window.api.createDocument('새 페이지', null).then(() => {
+            fetchAndUpdate(); // 문서 생성 후 즉시 갱신
+        });
     });
-  });
 });
+

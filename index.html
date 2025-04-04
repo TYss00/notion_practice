@@ -1,124 +1,149 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/styles/reset.css" />
-    <link rel="stylesheet" href="src/styles/style.css" />
-    <script src="https://kit.fontawesome.com/cd31889dca.js" crossorigin="anonymous"></script>
-    <script src="src/components/api.js"></script>
-    <script src="src/components/documentService.js"></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <main>
-      <!-- 메인 화면 -->
-      <section id="main_screen">
-        <!-- 사이드바 -->
-        <section id="sidebar" class="open">
-          <input type="checkbox" id="menuicon" />
-          <label for="menuicon">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
-          <div class="sidebar">
-            <!-- 개인 페이지 영역 -->
-            <button class="add_new_page">새 페이지 추가</button>
-            <div id="my_pages">
-              <!-- <h1>개인 페이지</h1> -->
-              <ul id="page_list">
-                <!-- 예시 -->
-                <!-- 부모페이지1 -->
-                <li>
-                  <div>
-                    <a href="#">부모페이지1</a>
-                    <div class="btns">
-                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/src/styles/style.css" />
+        <link rel="stylesheet" href="/src/styles/reset.css" />
+        <script src="https://kit.fontawesome.com/cd31889dca.js" crossorigin="anonymous"></script>
+        <script src="/src/components/api.js"></script>
+        <script type="module" src="/src/components/documentService.js"></script>
+        <script src="/src/components/Editor.js"></script>
+        <script src="/src/components/AutoSave.js"></script>
+        <script src="/src/components/Router.js"></script>
+        <script src="/src/components/main.js"></script>
+
+        <title>Document</title>
+    </head>
+    <body>
+        <main>
+            <!-- 메인 화면 -->
+            <section id="main_screen">
+                <!-- 사이드바 -->
+                <section id="sidebar" class="open">
+                    <input type="checkbox" id="menuicon" />
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <!-- 개인 페이지 영역 -->
+                        <div id="my_pages">
+                            <h1>개인 페이지</h1>
+                            <ul id="page_list">
+                                <!-- 예시 -->
+                                <!-- 부모페이지1 -->
+                                <li>
+                                    <div>
+                                        <a href="#">부모페이지1</a>
+                                        <div class="btns">
+                                            <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                                            <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </div>
+                                    <ul class="children">
+                                        <li>
+                                            <a href="#">자식 페이지 1-1</a>
+                                            <div class="btns">
+                                                <button class="add_btn">
+                                                    <i class="fa-regular fa-square-plus"></i>
+                                                </button>
+                                                <button class="delete_btn">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#">자식 페이지 1-2</a>
+                                            <div class="btns">
+                                                <button class="add_btn">
+                                                    <i class="fa-regular fa-square-plus"></i>
+                                                </button>
+                                                <button class="delete_btn">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- 부모페이지2 -->
+                                <li>
+                                    <div>
+                                        <a href="#">부모페이지2</a>
+                                        <div class="btns">
+                                            <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                                            <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </div>
+                                    <ul class="children">
+                                        <li>
+                                            <a href="#">자식 페이지 2-1</a>
+                                            <div class="btns">
+                                                <button class="add_btn">
+                                                    <i class="fa-regular fa-square-plus"></i>
+                                                </button>
+                                                <button class="delete_btn">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- 부모페이지3 -->
+                                <li>
+                                    <div>
+                                        <a href="#">부모페이지3</a>
+                                        <div class="btns">
+                                            <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                                            <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </div>
+                                    <ul class="children">
+                                        <li>
+                                            <a href="#">자식 페이지 3-1</a>
+                                            <div class="btns">
+                                                <button class="add_btn">
+                                                    <i class="fa-regular fa-square-plus"></i>
+                                                </button>
+                                                <button class="delete_btn">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#">자식 페이지 3-2</a>
+                                            <div class="btns">
+                                                <button class="add_btn">
+                                                    <i class="fa-regular fa-square-plus"></i>
+                                                </button>
+                                                <button class="delete_btn">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div>
+                                        <a href="#">부모페이지4</a>
+                                        <div class="btns">
+                                            <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
+                                            <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button class="add_new_page">새 페이지 추가</button>
+                        </div>
                     </div>
-                  </div>
-                  <ul class="children">
-                    <li>
-                      <a href="#">자식 페이지 1-1</a>
-                      <div class="btns">
-                        <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                        <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#">자식 페이지 1-2</a>
-                      <div class="btns">
-                        <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                        <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <!-- 부모페이지2 -->
-                <li>
-                  <div>
-                    <a href="#">부모페이지2</a>
-                    <div class="btns">
-                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                    </div>
-                  </div>
-                  <ul class="children">
-                    <li>
-                      <a href="#">자식 페이지 2-1</a>
-                      <div class="btns">
-                        <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                        <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <!-- 부모페이지3 -->
-                <li>
-                  <div>
-                    <a href="#">부모페이지3</a>
-                    <div class="btns">
-                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                    </div>
-                  </div>
-                  <ul class="children">
-                    <li>
-                      <a href="#">자식 페이지 3-1</a>
-                      <div class="btns">
-                        <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                        <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#">자식 페이지 3-2</a>
-                      <div class="btns">
-                        <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                        <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <div>
-                    <a href="#">부모페이지4</a>
-                    <div class="btns">
-                      <button class="add_btn"><i class="fa-regular fa-square-plus"></i></button>
-                      <button class="delete_btn"><i class="fa-regular fa-trash-can"></i></button>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <!-- 페이지 편집창 -->
-        <section id="editor">
-          <input type="text" id="page_title" placeholder="새 페이지" />
-          <textarea id="page_contents" placeholder="내용을 입력하세요"></textarea>
-        </section>
-      </section>
-    </main>
-  </body>
+                </section>
+                <!-- 페이지 편집창 -->
+                <section id="editor">
+                    <input type="text" id="page_title" placeholder="새 페이지" />
+                    <textarea id="page_contents" placeholder="내용을 입력하세요"></textarea>
+                </section>
+            </section>
+        </main>
+    </body>
 </html>
