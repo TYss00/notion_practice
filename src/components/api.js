@@ -6,7 +6,7 @@ const HEADERS = {
 };
 // 문서 목록 가져오기 (리스트)
 
-async function fetchDocuments() {
+export async function fetchDocuments() {
   try {
     const res = await fetch(API_URL, {
       method: "GET",
@@ -26,7 +26,7 @@ async function fetchDocuments() {
 
 
 // 문서 생성하기 (새 페이지 만들기)
-async function createDocument(title, parent = null) {
+export async function createDocument(title, parent = null) {
   try {
     const res = await fetch(API_URL, {
       method: "POST",
@@ -49,7 +49,7 @@ async function createDocument(title, parent = null) {
 // 특정 문서 수정하기 (AutoSave.js에 필요)
 
 
-async function updateDocument(documentId, title, content) {
+export async function updateDocument(documentId, title, content) {
   try {
     const res = await fetch(`${API_URL}/${documentId}`, {
       method: "PUT",
@@ -69,8 +69,8 @@ async function updateDocument(documentId, title, content) {
 }
 
 // 문서 삭제하기 (DocumentDelete.js에 필요)
-
-async function deleteDocument(documentId) {
+ 
+export async function deleteDocument(documentId) {
   try {
     const res = await fetch(`${API_URL}/${documentId}`, {
       method: "DELETE",
@@ -92,7 +92,7 @@ async function deleteDocument(documentId) {
 
 
 // 특정 문서 가져오기 (Editor.js)
-async function getDocumentById(documentId) {
+export async function getDocumentById(documentId) {
     try {
         const res = await fetch(`${API_URL}/${documentId}`, {
             method: 'GET',
@@ -109,4 +109,3 @@ async function getDocumentById(documentId) {
         return null; // 실패 시 null 반환
     }
 }
-
