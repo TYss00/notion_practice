@@ -19,11 +19,11 @@
 
 # 3. Key Features (주요 기능)
 - **메인화면**:
-(https://github.com/user-attachments/assets/9e6f87d6-f90b-4b04-970a-f8ce43f407c1)
+![스크린샷 2025-05-20 오후 5 19 47](https://github.com/user-attachments/assets/71c5a0d9-48e1-4524-b376-de0c52b039ff)
 메인화면에서는 오늘의 시간을 볼수있다.
 
 - **사이드바를 열었을때**:
-(https://github.com/user-attachments/assets/ed681133-bdb7-488c-b4a0-d79fc43039c2)
+![스크린샷 2025-05-20 오후 5 20 03](https://github.com/user-attachments/assets/19940716-c479-4510-b8c8-2a35eb0a064a)
 사이드바를 열면 글을 저장한것이있고 새 페이지버튼을 누르면 추가할수있고 오른쪽에 글을 쓰면 저장이된다.
 
 <br/>
