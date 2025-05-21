@@ -1,9 +1,7 @@
-# 노션 클로링 사이트만들기
-
-# 1. Project Overview (프로젝트 개요)
+# 1. 프로젝트 개요
 
 ## 프로젝트 이름
-- 문서편집 사이트 만들어보기
+- 노션 클로링 사이트만들기
 
 ## 프로젝트 설명
 - 문서편집사이트들과 비슷하게 구현하여 **html,css,js**를 연습하고 **api를 연습하여 문서 불러오기,삭제,추가**등을 구현하였다.
@@ -18,7 +16,7 @@
 <br/>
 <br/>
 
-# 2. Team Members (팀원 및 팀 소개)
+# 2. 팀원 및 팀소개
 | 정지유 | 김태연A | 권태훈 | 이민지 | 이교은 |
 |:------:|:------:|:------:|:------:|:------:|
 | <img src="https://avatars.githubusercontent.com/u/86185120?v=4" alt="정지유" width="150"> | <img src="https://avatars.githubusercontent.com/u/89635061?v=4" alt="김태연A" width="150"> | <img src="https://avatars.githubusercontent.com/u/56614716?v=4" alt="권태훈" width="150"> | <img src="https://avatars.githubusercontent.com/u/175625606?v=4" alt="이민지" width="150"> | <img src="https://avatars.githubusercontent.com/u/101385806?v=4" alt="이교은" width="150"> |
@@ -28,7 +26,7 @@
 <br/>
 <br/>
 
-# 3. Key Features (주요 기능)
+# 3. 주요기능
 - **메인화면**:
 ![메인화면-달력](https://github.com/user-attachments/assets/aa8d3c92-c433-4d80-a0f6-08f4964231c0)
 메인화면에서는 오늘의 시간,날씨와 달력을 볼수있다.
@@ -56,7 +54,7 @@
 <br/>
 <br/>
 
-# 4. Technology Stack (기술 스택)
+# 4. 사용한 기술
 ## 4.1 언어
 | HTML5 | CSS3 | JavaScript |
 |:-----:|:----:|:----------:|
@@ -68,6 +66,6 @@
 ## 4.2 협력도구
 | Git | GitHub | Notion | Slack |
 |:---:|:------:|:------:|:-----:|
-| <img src="https://github.com/user-attachments/assets/483abc38-ed4d-487c-b43a-3963b33430e6" alt="git" width="100">  | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Font_Awesome_5_brands_github.svg/250px-Font_Awesome_5_brands_github.svg.png" alt="github" width="100"> | <img src="https://github.com/user-attachments/assets/34141eb9-deca-416a-a83f-ff9543cc2f9a" alt="Notion" width="100">| <img src="[https://github.com/user-attachments/assets/34141eb9-deca-416a-a83f-ff9543cc2f9a](https://res.cloudinary.com/dqddtkvmb/image/upload/v1728017922/production/images/logos/slack.webp)" alt="slack" width="100">|
+| <img src="https://github.com/user-attachments/assets/483abc38-ed4d-487c-b43a-3963b33430e6" alt="git" width="100">  | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Font_Awesome_5_brands_github.svg/250px-Font_Awesome_5_brands_github.svg.png" alt="github" width="100"> | <img src="https://github.com/user-attachments/assets/34141eb9-deca-416a-a83f-ff9543cc2f9a" alt="Notion" width="100">| <img src="https://www.darun.io/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdqddtkvmb%2Fimage%2Fupload%2Fv1728017922%2Fproduction%2Fimages%2Flogos%2Fslack.webp&w=96&q=75" alt="slack" width="100">|
 
 <br/>
