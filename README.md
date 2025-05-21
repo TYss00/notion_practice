@@ -12,6 +12,8 @@
 - **DOM 조작**, **API 연동**, **라우팅 처리** 등 프론트엔드 개발의 기본기를 익히고, **트리 구조의 데이터를 UI에 자연스럽게 표현**하는 경험을 쌓는다.  
 - 직접 구조를 설계하고 구현하는 과정을 통해, **프레임워크에 의존하지 않고도 동작하는 웹 애플리케이션을 만드는 기초 실력**을 키운다.
 
+## 개발기간
+- 3/31 ~ 4/4
 
 <br/>
 <br/>
@@ -20,7 +22,7 @@
 | 정지유 | 김태연A | 권태훈 | 이민지 | 이교은 |
 |:------:|:------:|:------:|:------:|:------:|
 | <img src="https://avatars.githubusercontent.com/u/86185120?v=4" alt="정지유" width="150"> | <img src="https://avatars.githubusercontent.com/u/89635061?v=4" alt="김태연A" width="150"> | <img src="https://avatars.githubusercontent.com/u/56614716?v=4" alt="권태훈" width="150"> | <img src="https://avatars.githubusercontent.com/u/175625606?v=4" alt="이민지" width="150"> | <img src="https://avatars.githubusercontent.com/u/101385806?v=4" alt="이교은" width="150"> |
-| FE | FE | FE | FE | FE |
+| FE(JS) | FE(JS) | FE(CSS) | FE(HTML) | FE(JS) |
 | [@JINJIYU23](https://github.com/JINJIYU23) | [@TYss00](https://github.com/TYss00) | [@KwonTaeHun00](https://github.com/KwonTaeHun00) | [@mjlee38](https://github.com/mjlee38) | [@kyoeun01](https://github.com/kyoeun01) |
 
 <br/>
