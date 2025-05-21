@@ -19,23 +19,30 @@
 
 # 3. Key Features (주요 기능)
 - **메인화면**:
-![스크린샷 2025-05-20 오후 5 19 47](https://github.com/user-attachments/assets/71c5a0d9-48e1-4524-b376-de0c52b039ff)
+
 메인화면에서는 오늘의 시간을 볼수있다.
+![메인화면-달력](https://github.com/user-attachments/assets/aa8d3c92-c433-4d80-a0f6-08f4964231c0)
+메인화면에서는 오늘의 시간,날씨와 달력을 볼수있다.
 
 - **사이드바를 열었을때**:
-![스크린샷 2025-05-20 오후 5 20 03](https://github.com/user-attachments/assets/19940716-c479-4510-b8c8-2a35eb0a064a)
-사이드바를 열면 사이드바메뉴가 나온다.
+![사이드바](https://github.com/user-attachments/assets/0106db66-bd3b-4bf0-bac0-1ae40d1f206d)
+사이드바를 열면 사이드바메뉴가 나오고 닫으면 사이드바가 사라진다.
 
-- **사이드바에서 삭제,추가**:
-![스크린샷 2025-05-20 오후 5 29 56](https://github.com/user-attachments/assets/6c6bdca1-d724-4a12-8f36-7427e5e7c076)
-사이드바에서 추가를 누르면 아래로 추가가 된다.
-![스크린샷 2025-05-20 오후 5 30 09](https://github.com/user-attachments/assets/79f5a691-4b01-41fa-ae45-0b25c15f70c6)
-필요없다면 삭제를 누르면 삭제가된다.
-![스크린샷 2025-05-20 오후 5 30 51](https://github.com/user-attachments/assets/1217e957-e30e-4719-8395-ae7e70a36cb5)
-새페이지추가를 누르면 새페이지가 사이드바에 추가가된다.
-![스크린샷 2025-05-20 오후 5 31 07](https://github.com/user-attachments/assets/883ec26d-06ec-40e0-b195-382b01496ad0)
-페이지 제목,내용을 변경하고싶다면 지정사이드바를 클릭후 오른쪽에서 수정해주면된다.
+- **사이드바에서 삭제**:
+![삭제](https://github.com/user-attachments/assets/613f1927-5d57-45b7-a06c-c0465d3a0519)
+휴지통버튼을 누르면 사이드바에서 삭제가된다.
 
+- **사이드바에서 추가**:
+![새페이지-추가](https://github.com/user-attachments/assets/e859d2ff-0026-4b36-af65-0351e6f10a7b)
+맨아래 새페이지추가를 누르면 사이드바에 추가가된다.
+
+- **사이드바에서 자식추가**:
+![새페이지-사이드바-추가](https://github.com/user-attachments/assets/629eab03-de03-414a-a8d9-a9e46f8014aa)
++버튼을 누르면 사이드바 아래에 자식페이지가 추가된다.
+
+- **본문 변경**:
+![제목변경](https://github.com/user-attachments/assets/8b557ed9-c7cf-42b6-8b48-f4e7e125e6df)
+안에 내용을 변경할수있고 사이드바에 바로 적용된다.
 
 <br/>
 <br/>
