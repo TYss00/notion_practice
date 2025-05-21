@@ -12,7 +12,7 @@
 |:------:|:------:|:------:|:------:|:------:|
 | <img src="https://avatars.githubusercontent.com/u/86185120?v=4" alt="정지유" width="150"> | <img src="https://avatars.githubusercontent.com/u/89635061?v=4" alt="김태연A" width="150"> | <img src="https://avatars.githubusercontent.com/u/56614716?v=4" alt="권태훈" width="150"> | <img src="https://avatars.githubusercontent.com/u/175625606?v=4" alt="이민지" width="150"> | <img src="https://avatars.githubusercontent.com/u/101385806?v=4" alt="이교은" width="150"> |
 | FE | FE | FE | FE | FE |
-| [GitHub](https://github.com/JINJIYU23) | [GitHub](https://github.com/TYss00) | [GitHub](https://github.com/KwonTaeHun00) | [GitHub](https://github.com/mjlee38) | [GitHub](https://github.com/kyoeun01) |
+| [@JINJIYU23](https://github.com/JINJIYU23) | [@TYss00](https://github.com/TYss00) | [@KwonTaeHun00](https://github.com/KwonTaeHun00) | [@mjlee38](https://github.com/mjlee38) | [@kyoeun01](https://github.com/kyoeun01) |
 
 <br/>
 <br/>
